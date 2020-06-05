@@ -47,16 +47,14 @@ class BluetoothServer (threading.Thread):
                 print("Cosa1")
                 self.server_thread_list.append(hebra)
                 print("Cosa2")
-                self.server_thread_list[-1].run()
+                self.server_thread_list[-1].start()
                 
                 print("Cosa3")
                 
-        except NameError as e:
-            print("Error: ", e)
-            
-        except:
+        
+        except Exception as e:
 
-            print ("disconnected")
+            print ("disconnected by exception: ", e)
             server_sock.close()
             
             excepcion = False
