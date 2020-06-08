@@ -54,6 +54,9 @@ class protocolo_rpi4:
         if cosas[2] == "REGISTERASSISTANCE":
             de_donde_viene_el_mensaje = "ASSISTANCE"
             
+        elif cosas[2] == "GETTIMETABLE":
+            de_donde_viene_el_mensaje = "HORARIO"
+            
         else:
             de_donde_viene_el_mensaje = "ERROR"
             
@@ -89,6 +92,26 @@ class protocolo_rpi4:
         fecha = cosas[6];
          
         return user_info
+    
+    #Este método va a obtener las asignaturas del protocolo para poder asignarselas al horario
+    def getSubjectsFromProtocol(self, cadena, horarios):
+        
+        asignaturas = ""
+        
+        if self.checkIfMessageIsFromProtocol(cadena):
+            if(self.checkWhereTheMessageIsFrom(cadena) == "SERVER"):
+                if(self.manageMessageFromApp(cadena) == "HORARIO"):
+                    cosas = cadena.split("#")
+#                     print("Cosas[4]: ", cosas[4])
+#                     print("Cosas[6]: ", cosas[6])
+#                     print("Cosas[8]: ", cosas[8])
+#                     print("Cosas[10]: ", cosas[10])
+#                     print("Cosas[12]: ", cosas[12])
+                    horarios.asignarAsignaturas(cosas[4], cosas[6], cosas[8], cosas[10], cosas[12])
+                    
+                    
+                    
+                    
     
     
      

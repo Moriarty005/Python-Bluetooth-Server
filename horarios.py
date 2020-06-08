@@ -26,6 +26,23 @@ class Horarios:
         self.jueves = asig_jueves.split(".")
         self.viernes = asig_viernes.split(".")
         
+    #Método al que se le van a pasar arrays y va a asignar estos a los arrays del objeto
+    def setAsignaturas(self, monday, tuesday, wednesday, thursday, friday):
+        
+        self.lunes = monday
+        self.martes = tuesday
+        self.miercoles = wednesday
+        self.jueves = thursday
+        self.viernes = friday
+    
+    #Este método va a imprimir los dias del horario
+    def printHorario(self):
+        print("LUNES: ", self.lunes)
+        print("MARTES: ", self.martes)
+        print("MIERCOLES: ", self.miercoles)
+        print("JUEVES: ", self.jueves)
+        print("VIERNES: ", self.viernes)
+        
     #Este es un método de testeo que simplmente va a asignar valores de prueba a las asignaturas    
     def asignarAsignaturasDePrueba(self):
         monday = "EIE.DI.AD.IG.SGE.PMDM"
@@ -35,7 +52,7 @@ class Horarios:
         friday = "PSP.PMDM.IG.SGE.DI.AD"
         
         self.asignarAsignaturas(monday, tuesday, wednesday, thursday, friday)
-        print("Hemos asignado las asignaturas a los dias")
+#         print("Hemos asignado las asignaturas a los dias")
 
 
     #Éste método se va a encargar de comprobar si el estudiante está intentando registrar su asistencia en horario escolar o si ha pulsado el botón fuera de él
@@ -49,7 +66,7 @@ class Horarios:
         fecha_guay = fechia.ctime()
         
         if((fechia.hour > 8) and (fechia.hour < 14)):
-            print("El usuario se está intentando registrar en horario escolar")
+#             print("El usuario se está intentando registrar en horario escolar")
             comprobante = True
         
         return comprobante
@@ -61,8 +78,8 @@ class Horarios:
         formato = "%d/%m/%Y %H:%M:%S"
         fechia = datetime.strptime(fecha, formato)
         
-        print("fecha.hour: ", fechia.hour)
-        print("fecha.minute: ", fechia.minute)
+#         print("fecha.hour: ", fechia.hour)
+#         print("fecha.minute: ", fechia.minute)
         
         hora = 0
         
@@ -95,7 +112,7 @@ class Horarios:
             print("No es horario escolar")
             hora = 99
             
-        print("zalimo")
+#         print("zalimo")
         return hora
     
 
@@ -111,7 +128,7 @@ class Horarios:
         partes_fecha = fecha_guay.split(" ")
         
         dia = partes_fecha[0]
-        print("Dia de la semana: ", dia)
+#         print("Dia de la semana: ", dia)
         
         return dia
         
@@ -146,7 +163,12 @@ class Horarios:
                     
                 else:
                     asignatura =  "NOPE"
-                
+            else:
+                asignatura =  "NOPE"
+        else:
+            asignatura =  "NOPE"
+        
+        print("Asignatura que obtenemos con la fecha: ", asignatura)
         return asignatura
     
    

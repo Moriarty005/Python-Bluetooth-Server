@@ -44,12 +44,12 @@ class BluetoothServer (threading.Thread):
                 print ("Accepted connection from ", client_info)
                 
                 hebra = BluetoothThread(self, client_sock)
-                print("Cosa1")
+#                 print("Cosa1")
                 self.server_thread_list.append(hebra)
-                print("Cosa2")
+#                 print("Cosa2")
                 self.server_thread_list[-1].start()
                 
-                print("Cosa3")
+#                 print("Cosa3")
                 
         
         except Exception as e:
