@@ -66,8 +66,8 @@ class BluetoothThread (threading.Thread):
                                 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                                 client.connect(('192.168.1.39', 39999))
 
-                                client.send(bytes(str("ASSISTANCESUPPORT#RPI4#REGISTERASSISTANCE#{}#{}#{}".format(fecha, dni, asig))))
-
+                                client.send(bytes(str("ASSISTANCESUPPORT#RPI4#REGISTERASSISTANCE#{}#{}#{}".format(fecha, dni, asig)), 'UTF-8'))
+                                print("DEBUG: Hemos enviado el mensaje de registro de asistencia al servidor, aver que pasa")
                                 client.close()
                                 
                                                     
