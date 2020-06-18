@@ -102,11 +102,6 @@ class protocolo_rpi4:
             if(self.checkWhereTheMessageIsFrom(cadena) == "SERVER"):
                 if(self.manageMessageFromApp(cadena) == "HORARIO"):
                     cosas = cadena.split("#")
-#                     print("Cosas[4]: ", cosas[4])
-#                     print("Cosas[6]: ", cosas[6])
-#                     print("Cosas[8]: ", cosas[8])
-#                     print("Cosas[10]: ", cosas[10])
-#                     print("Cosas[12]: ", cosas[12])
                     horarios.asignarAsignaturas(cosas[4], cosas[6], cosas[8], cosas[10], cosas[12])
                     
                     

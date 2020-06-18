@@ -8,20 +8,20 @@ class BluetoothThread (threading.Thread):
     server_padre = None
     socket = None
     protocolo = None
+    horario = None
     
-    horarios = None
     
     
-    def __init__(self, padre, skt):
+    def __init__(self, padre, skt, horarios, protocol):
         threading.Thread.__init__(self)
         
         print("Entramos en el contructor de la hebra server de rpi4")
         
         self.server_padre = padre
         self.socket = skt
-        self.protocolo = protocolo_rpi4()
-        self.horarios = Horarios()
-        self.obtenerHorarios()
+        self.protocolo = protocol
+        self.horario = horarios
+        
         
         
         #Vamos a asignar valores de prueba para poder comenzar a probar y tal
@@ -56,7 +56,7 @@ class BluetoothThread (threading.Thread):
                             dni = self.protocolo.getUserDniFromAppMessage(inputline)
                             fecha = self.protocolo.getFechaFromAppMessage(inputline)
 #                             print("TODO GUAY")
-                            asig = self.horarios.obtenerAsignaturaParaRegistrarAsistenciaEnBaseADiaYHora(fecha)
+                            asig = self.horario.obtenerAsignaturaParaRegistrarAsistenciaEnBaseADiaYHora(fecha)
 #                             print("Asig: ", asig)
                             if(asig is not "NOPE"):
                                 print("La asignatura es valida")
@@ -80,32 +80,7 @@ class BluetoothThread (threading.Thread):
             
                                 
                                 
-    def obtenerHorarios(self):
-        print('Entramos en la parte en la que conectamos con el server')
-        
-        try:
-            client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            client.connect(('192.168.1.39', 39999))
-            print("DEBUG (obtenerHorarios): HEmos conectado con el server")
-
-            client.send(b'ASSISTANCESUPPORT#RPI4#GETTIMETABLE#2D')
-            print("DEBUG (obtenerHorarios): Enviamos la info")            
-            cosa = client.recv(1024)
-            print("DEBUG (obtenerHorarios): Recibimos")
-            
-            cosa = str(cosa)
-            cosa = cosa[2:]
-            cosa = cosa[:len(cosa) - 5]
-            print("Lo que nos llega del server: ", cosa)
-            self.protocolo.getSubjectsFromProtocol(cosa, self.horarios)
-            print("Hemos asignado las asignaturas")
-            self.horarios.printHorario()
-            #self.horarios.asignarAsignaturas(cosas[1], cosas[3], cosas[5], cosas[7], cosas[9])        
-            
-            client.close()
-        except Exception as e:
-            print("Excepcion (obtenerHorarios): ", e)
-            client.close()
+    
                     
             
             
